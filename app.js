@@ -4,6 +4,9 @@ const express = require ('express');
 //Importation de package mongoose 
 const mongoose = require('mongoose');
 
+// Importation de router 
+const userRoutes = require('./routes/user');
+
 // la fonction de connexion à MongoDB
 mongoose.connect('mongodb+srv://sandrine:9095Tcha@myfirstdatabase.lm0bw.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
@@ -32,5 +35,8 @@ const app = express ();
 
 
 app.use(express.json());
+
+// On enrégistre les routes en ajoutant un app.use et la route attendu par le frontend
+app.use("/api/auth", userRoutes);
 
 module.exports = app;
