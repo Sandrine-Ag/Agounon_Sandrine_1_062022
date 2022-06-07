@@ -1,6 +1,17 @@
 // Importation de l'application express
 const express = require ('express');
 
+//Importation de package mongoose 
+const mongoose = require('mongoose');
+
+// la fonction de connexion à MongoDB
+mongoose.connect('mongodb+srv://sandrine:9095Tcha@myfirstdatabase.lm0bw.mongodb.net/?retryWrites=true&w=majority',
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+
 // La fonction de CORS pour gérer la double origine
 app.use((req, res, next) => {
     // Cette réponse nous permet d'accéder à API par n'importe l'origine
@@ -13,8 +24,8 @@ app.use((req, res, next) => {
       return res.status(200).end();
     }
       next();
-  }); 
-  
+}); 
+
 const app = express ();
 
 
