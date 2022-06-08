@@ -5,6 +5,10 @@ const User = require('../models/User');
 //Importation du package de cryptage pour les mots de passe
 const bcrypt = require('bcrypt');
 
+//Les tokens d'authentification permettent aux utilisateurs de ne se connecter qu'une seule fois à leur compte
+//Importation du package jsonwebtoken
+const jwt = require("jsonwebtoken");
+
 // La fonction signup pour création de nouveaux users dans la base de données
 exports.signup = (req, res, next) => {
     // on crypte en lui passant le mot de passe du corps de la requête aui sera passé par le frontend
@@ -21,7 +25,7 @@ exports.signup = (req, res, next) => {
        });
        //Enregistrement du user dans la base de données
        user.save()
-           .then(() => res.status(201).json({message: "Utilisateur créé !"}))
+           .then(() => res.status(201).json({message: 'Utilisateur créé '}))
            .catch(error => res.status(400).json({error}));
    })
    .catch(error => res.status(500).json({error}));
@@ -50,18 +54,19 @@ exports.login = (req, res, next) => {
                     //identifiant de user dans la base renvoie son user id et son token d'identification
                     res.status(200).json({
                         userId: user._id,
-                        token
+                        // on utilise la fonction sign de jwt pour encoder un nouveau token
+                        token: jwt.sign(
+                            // ce nouveau token contient ID useren données encodées
+                            {userId: user._id},
+                            //on utilise ensuite une chaîne secrète pour encoder notre token
+                            "RANDOM_TOKEN_SECRET",
+                            // on accorde un delai (le User peut se reconnecter au bout de 24h)
+                            {expiresIn: "24h"}
+                        )
                     });
                 })
                 // problème de connexion lié à MongoDB
                 .catch(error => res.status(500).json({error}));
         })
         .catch(error => res.status(500).json({error}));
-    
-
-    
-
-
-
-    
 };
