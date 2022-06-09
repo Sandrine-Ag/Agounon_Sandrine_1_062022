@@ -1,13 +1,13 @@
-// On a besoin de notre modèle User pour enrégistrer et lire des users dans ces middlewares
-const User = require('../models/User');
-
 // on a besoin du package de cryptage 
 //Importation du package de cryptage pour les mots de passe
 const bcrypt = require('bcrypt');
 
 //Les tokens d'authentification permettent aux utilisateurs de ne se connecter qu'une seule fois à leur compte
 //Importation du package jsonwebtoken
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
+
+// On a besoin de notre modèle User pour enrégistrer et lire des users dans ces middlewares
+const User = require('../models/User');
 
 // La fonction signup pour création de nouveaux users dans la base de données
 exports.signup = (req, res, next) => {

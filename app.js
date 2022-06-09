@@ -15,6 +15,8 @@ mongoose.connect('mongodb+srv://sandrine:9095Tcha@myfirstdatabase.lm0bw.mongodb.
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 
+const app = express ();
+
 // La fonction de CORS pour gérer la double origine
 app.use((req, res, next) => {
     // Cette réponse nous permet d'accéder à API par n'importe l'origine
@@ -29,14 +31,10 @@ app.use((req, res, next) => {
       next();
 }); 
 
-const app = express ();
-
-
+// On enrégistre les routes en ajoutant un app.use et la route attendu par le frontend
+app.use("/api/auth", userRoutes);
 
 
 app.use(express.json());
-
-// On enrégistre les routes en ajoutant un app.use et la route attendu par le frontend
-app.use("/api/auth", userRoutes);
 
 module.exports = app;
