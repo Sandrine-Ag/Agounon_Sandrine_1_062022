@@ -34,7 +34,8 @@ app.use((req, res, next) => {
 // On enrégistre les routes en ajoutant un app.use et la route attendu par le frontend
 app.use("/api/auth", userRoutes);
 
-
+// Express prend toutes les requêtes qui ont pur ContenType Application/Json et met à disposition
+//directement dans l'objet requête. Utile pour écrire une middleware Post
 app.use(express.json());
 
 module.exports = app;
