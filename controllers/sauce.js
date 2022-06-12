@@ -21,7 +21,7 @@ exports.createSauce = (req, res, next) => {
         .catch(error => res.status(400).json({error}));
 };
 
-/* exports.likeSauce = (req, res, next) => {
+exports.likeSauce = (req, res, next) => {
     Sauce.findOne({_id: req.params.id})
         .then(sauce => {
             if (req.body.like == 1) {
@@ -59,7 +59,7 @@ exports.createSauce = (req, res, next) => {
             }
         })
         .catch(error => res.status(404).json({error}));   
-}; */
+};
 
 exports.modifySauce = (req, res, next) => {
     // une sauce déjà créée par l'utilisateur
