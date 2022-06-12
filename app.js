@@ -4,8 +4,9 @@ const express = require ('express');
 //Importation de package mongoose 
 const mongoose = require('mongoose');
 
-// Importation de router 
+// Importation de routeur 
 const userRoutes = require('./routes/user');
+const sauceRoutes = require("./routes/sauce");
 
 // la fonction de connexion à MongoDB
 mongoose.connect('mongodb+srv://sandrine:9095Tcha@myfirstdatabase.lm0bw.mongodb.net/?retryWrites=true&w=majority',
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 
 // On enrégistre les routes en ajoutant un app.use et la route attendu par le frontend
 app.use("/api/auth", userRoutes);
+app.use("/api/sauces", sauceRoutes);
 
 // Express prend toutes les requêtes qui ont pur ContenType Application/Json et met à disposition
 //directement dans l'objet requête. Utile pour écrire une middleware Post
