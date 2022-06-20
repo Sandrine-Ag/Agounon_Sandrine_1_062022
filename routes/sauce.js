@@ -6,18 +6,19 @@ const sauceControllers = require ('../controllers/sauce');
 
 //Permet de protéger mes routes
 const auth = require('../middleware/auth');
-const multer = require('../middleware/auth');
+const multer = require('../middleware/multer-config');
 
-const app = express();
-app.use(express.json());
+
+/*const app = express();
+app.use(express.json());*/
 
 // Les differentes méthodes avec router
-router.get("/", app, auth, sauceControllers.getAllSauces);
-router.post("/", app, auth, multer, sauceControllers.createSauce);
-router.get("/:id", app, auth, sauceControllers.getOneSauce);
-router.put("/:id", app, auth, multer, sauceControllers.modifySauce);
-router.delete("/:id", app, auth, sauceControllers.deleteSauce);
-router.post("/:id/like", app, auth, sauceControllers.likeSauce);
+router.get("/", auth, sauceControllers.getAllSauces);
+router.post("/", auth, multer, sauceControllers.createSauce);
+router.get("/:id", auth, sauceControllers.getOneSauce);
+router.put("/:id",  auth, multer, sauceControllers.modifySauce);
+router.delete("/:id",  auth, sauceControllers.deleteSauce);
+router.post("/:id/like", auth, sauceControllers.likeSauce);
   
 
 module.exports = router;

@@ -4,6 +4,8 @@ const fs = require ('fs')
 // La fonction des routes
 exports.createSauce = (req, res, next) => { 
     // on créé une sauce, on récupère son image, son id
+    console.log(req.body);
+    
     const sauceObject = JSON.parse(req.body.sauce);
     //on supprime le champ id du corps de la requête parce que mongoose génère déjà un id
     delete sauceObject._id;

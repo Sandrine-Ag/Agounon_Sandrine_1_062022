@@ -11,6 +11,7 @@ const User = require('../models/User');
 
 // La fonction signup pour création de nouveaux users dans la base de données
 exports.signup = (req, res, next) => {
+    
     // on crypte en lui passant le mot de passe du corps de la requête aui sera passé par le frontend
     // combien de fois on exécute l'algorithme de hachage(10 tours)
      bcrypt.hash(req.body.password, 10)
@@ -33,6 +34,7 @@ exports.signup = (req, res, next) => {
 
 // La fonction login pour connecter des users existants
 exports.login = (req, res, next) => {
+    console.log(this.login)
     // on trouve un user dans la base de données qui correspond 
     //à l'adresse mail qui est entrée par le user de l'application
     // adresse mail correspond à l'adresse mail envoyée dans la requête
