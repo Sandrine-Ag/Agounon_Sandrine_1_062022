@@ -1,6 +1,6 @@
 // Importation du package Nodejs
 const http = require('http');
-// Importation de l'application express
+// Importation de l'application 
 const app = require ('./app');
 
 // Application de la fonction normalizePort qui renvoie un port valide

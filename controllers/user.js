@@ -1,8 +1,6 @@
-// on a besoin du package de cryptage 
 //Importation du package de cryptage pour les mots de passe
 const bcrypt = require('bcrypt');
 
-//Les tokens d'authentification permettent aux utilisateurs de ne se connecter qu'une seule fois à leur compte
 //Importation du package jsonwebtoken
 const jwt = require('jsonwebtoken');
 
@@ -34,9 +32,6 @@ exports.signup = (req, res, next) => {
 
 // La fonction login pour connecter des users existants
 exports.login = (req, res, next) => {
-    console.log(this.login)
-    // on trouve un user dans la base de données qui correspond 
-    //à l'adresse mail qui est entrée par le user de l'application
     // adresse mail correspond à l'adresse mail envoyée dans la requête
     User.findOne({email: req.body.email})
         .then(user => {
@@ -45,7 +40,6 @@ exports.login = (req, res, next) => {
                 return res.status(401).json({error: "Utilisateur non trouvé !"});   
             }
             //la fonction compare pour comparer le mot de passe envoyé 
-            // avec la requête avec le hash qui est enregistré dans le document user
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     // si le mot de passe ne correspond pas

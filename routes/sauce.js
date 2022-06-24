@@ -8,10 +8,6 @@ const sauceControllers = require ('../controllers/sauce');
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 
-
-/*const app = express();
-app.use(express.json());*/
-
 // Les differentes méthodes avec router
 router.get("/", auth, sauceControllers.getAllSauces);
 router.post("/", auth, multer, sauceControllers.createSauce);
